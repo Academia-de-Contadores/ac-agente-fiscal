@@ -1,0 +1,91 @@
+schema_version: '1.0'
+agent_id: fiscal
+selection_status: selected_with_evidence
+counts:
+  active_upload: 10
+  observed_sets:
+  - label: source_total
+    count: 10
+  - label: active_upload
+    count: 10
+files:
+- path: knowledge/source/00-INDICE-FISCAL.md
+  sha256: 9a1a21884a662ceb08972a3fb663dedd949eb6dd7c7194e11eb2daced97ca2b6
+  role: source
+  upload: false
+- path: knowledge/source/01-REGRAS-DE-USO-E-LIMITES.md
+  sha256: 4b7c4f4271cfb29ec0aabe97d271a8fd4deaf238765a19c7c699a10761019585
+  role: source
+  upload: false
+- path: knowledge/source/02-ESCOPO-E-ROTEAMENTO.md
+  sha256: ce7307dda82b27abb1b2d372cc1d417d38de92a4897858f437ded6043222568b
+  role: source
+  upload: false
+- path: knowledge/source/03-FONTES-CANONICAS.md
+  sha256: 200aa91f1c505d24412b9acc47f061e1911d218ff043747f889895a8db073fc6
+  role: source
+  upload: false
+- path: knowledge/source/04-SKILLS-E-CENARIOS-DE-USO.md
+  sha256: b5b20c87ee98dde9945267ebf4a8830439259fc34955b9a8e84d8d99ca9c3066
+  role: source
+  upload: false
+- path: knowledge/source/05-PERGUNTAS-TESTE-E-RESPOSTAS-ESPERADAS.md
+  sha256: c51d5e91ab00e5e8e773daaf751ce0aae6991eddb7316d7ca6b9544042a5715a
+  role: source
+  upload: false
+- path: knowledge/source/06-GUARDRAILS-E-CLAIMS-BLOQUEADOS.md
+  sha256: bacc9e73a433d1e42b46cc3ab3dc8e09d1ff3ab0e69eec3839abfe8ad210b5b0
+  role: source
+  upload: false
+- path: knowledge/source/07-MODELOS-DE-RESPOSTA-E-CHECKLISTS.md
+  sha256: ba9c7bf9e94be165bb08295125fef5e0d9e035a8ae14eb044d48f27e51b31029
+  role: source
+  upload: false
+- path: knowledge/source/08-LACUNAS-E-ROADMAP.md
+  sha256: 8cdfc6173d5b52c21e8f070545b6eaa66e9d0a9b4aba1f474b4f6ffc20023b81
+  role: source
+  upload: false
+- path: knowledge/source/99-FONTES-LACUNAS-E-CONTROLE-DE-VERSAO.md
+  sha256: 46c3041a2c896ffb3378fe12be33e4911f2c5a0e849a37cb541aed0957fae70b
+  role: source
+  upload: false
+- path: knowledge/upload/00-INDICE-FISCAL.md
+  sha256: 9a1a21884a662ceb08972a3fb663dedd949eb6dd7c7194e11eb2daced97ca2b6
+  role: upload_active
+  upload: true
+- path: knowledge/upload/01-REGRAS-DE-USO-E-LIMITES.md
+  sha256: 4b7c4f4271cfb29ec0aabe97d271a8fd4deaf238765a19c7c699a10761019585
+  role: upload_active
+  upload: true
+- path: knowledge/upload/02-ESCOPO-E-ROTEAMENTO.md
+  sha256: ce7307dda82b27abb1b2d372cc1d417d38de92a4897858f437ded6043222568b
+  role: upload_active
+  upload: true
+- path: knowledge/upload/03-FONTES-CANONICAS.md
+  sha256: 200aa91f1c505d24412b9acc47f061e1911d218ff043747f889895a8db073fc6
+  role: upload_active
+  upload: true
+- path: knowledge/upload/04-SKILLS-E-CENARIOS-DE-USO.md
+  sha256: b5b20c87ee98dde9945267ebf4a8830439259fc34955b9a8e84d8d99ca9c3066
+  role: upload_active
+  upload: true
+- path: knowledge/upload/05-PERGUNTAS-TESTE-E-RESPOSTAS-ESPERADAS.md
+  sha256: c51d5e91ab00e5e8e773daaf751ce0aae6991eddb7316d7ca6b9544042a5715a
+  role: upload_active
+  upload: true
+- path: knowledge/upload/06-GUARDRAILS-E-CLAIMS-BLOQUEADOS.md
+  sha256: bacc9e73a433d1e42b46cc3ab3dc8e09d1ff3ab0e69eec3839abfe8ad210b5b0
+  role: upload_active
+  upload: true
+- path: knowledge/upload/07-MODELOS-DE-RESPOSTA-E-CHECKLISTS.md
+  sha256: ba9c7bf9e94be165bb08295125fef5e0d9e035a8ae14eb044d48f27e51b31029
+  role: upload_active
+  upload: true
+- path: knowledge/upload/08-LACUNAS-E-ROADMAP.md
+  sha256: 8cdfc6173d5b52c21e8f070545b6eaa66e9d0a9b4aba1f474b4f6ffc20023b81
+  role: upload_active
+  upload: true
+- path: knowledge/upload/99-FONTES-LACUNAS-E-CONTROLE-DE-VERSAO.md
+  sha256: 46c3041a2c896ffb3378fe12be33e4911f2c5a0e849a37cb541aed0957fae70b
+  role: upload_active
+  upload: true

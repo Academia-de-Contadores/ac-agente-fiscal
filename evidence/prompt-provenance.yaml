@@ -1,0 +1,10 @@
+schema_version: '1.0'
+agent_id: fiscal
+path: prompt/instructions.md
+sha256: 943d9f0acc0d07657b12ddceaf6596701c0ae9e5ce94a7fe227b74e373c654ae
+vault_snapshot_path: agents/fiscal/_curated/pinned-snapshots/2026-08-07/instructions.md
+prompt_manifest_path: agents/fiscal/_curated/PROMPT-MANIFEST-2026-08-07.csv
+pinned_snapshot_source: 09_DCCEO_AGENTES/gpt-builder/pinned-2026-08-06/prompts/fiscal.md
+snapshot_status: different
+live_prompt_body_status: pending_no_live_prompt_hash
+external_configuration: not_verified
