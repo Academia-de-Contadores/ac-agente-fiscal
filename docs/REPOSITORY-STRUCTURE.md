@@ -8,7 +8,10 @@ controlada dele.
 
 ```text
 .
+├── SKILL.md                    # entrypoint distribuível da skill Fiscal
 ├── agent.yaml
+├── agents/                     # metadados de interface e invocação
+├── references/                 # políticas e formatos condicionais da skill
 ├── objectives/                 # missão, métricas e não-objetivos
 ├── identity/                   # papel, autoridade, voz e valores
 ├── instructions/               # prompt, guardrails e workflows permanentes
@@ -107,9 +110,11 @@ use-a somente com manifesto de tipo, alvo, finalidade e dependência.
 ## Skills
 
 - **O que é:** `skills/` reúne procedimentos reutilizáveis e acionáveis.
-- **Entra:** `skills/<nome>/SKILL.md` e `skills/<nome>/evaluations/`.
+- **Entra:** o entrypoint distribuível atual em `SKILL.md`; `skills/` fica
+  reservado para capacidades internas adicionais realmente separadas.
 - **Não entra:** regra de toda resposta, dado bruto ou credencial.
-- **Exemplo:** `skills/example-skill/SKILL.md` para estruturar briefing.
+- **Exemplo:** `SKILL.md` roteia para políticas em `references/` e para os dez
+  documentos permitidos por `skill_runtime.knowledge`.
 - **Avaliação ou revisão:** cada mudança requer cenário direcionado e regressão aplicável.
 
 ## Knowledge

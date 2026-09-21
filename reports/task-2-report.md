@@ -1,52 +1,53 @@
-# Task 2 report
+# Task 2 — pacote candidato da skill Fiscal
 
-## Status
+## Resultado
 
-Concluída localmente no branch `main`, em repositório Git isolado e sem remote.
+Foi criada a skill canônica `$ac-fiscal` versão `0.2.0`, com lifecycle
+`candidate`. Esta etapa não instalou a skill, não consultou o GPT, não gerou
+outputs de avaliação, não alterou o catálogo e não publicou nada no remoto.
 
-## Arquivos
+## Inventário distribuível
 
-- Manifesto e documentação: `agent.yaml`, `README.md`, `CHANGELOG.md`, `.gitignore`.
-- Núcleo: `objectives/`, `identity/` e `instructions/`.
-- Exemplos: skill com avaliação, conector RAG com contrato e indisponibilidade,
-  perfil versionado e adaptador versionado.
-- Governança e GitHub: cinco políticas, `CODEOWNERS`, template de pull request e
-  workflow de validação.
-- Verificação: `scripts/validate-agent-repo.sh` e
-  `tests/validate-agent-repo.test.sh`.
+A allowlist normativa em `agent.yaml` contém 23 arquivos regulares:
 
-## Evidência RED/GREEN
+- `SKILL.md`, `agent.yaml` e `agents/openai.yaml`;
+- três referências: fonte, saídas fiscais e aprovação;
+- dois arquivos de identidade, três de objetivos e dois de instruções;
+- dez documentos de Knowledge.
 
-- RED: `bash tests/validate-agent-repo.test.sh` retornou exit `1`; o trace parou em
-  `test -f .../README.md`, confirmando a ausência estrutural esperada.
-- GREEN: `bash tests/validate-agent-repo.test.sh && bash scripts/validate-agent-repo.sh`
-  retornou exit `0` com `validate-agent-repo tests passed` e
-  `agent repository validation passed`.
+O Knowledge é exatamente:
 
-## Commit da implementação
+- `knowledge/original/00-INDICE-FISCAL.md`;
+- nove arquivos em `knowledge/live-2026-08-22/`, de `01` a `99`.
 
-`29fcd7ad93ecf26aad9f799b017211a01a9c3ded`
+Os nove arquivos históricos `knowledge/original/01-*` a `99-*`, contaminados
+por material de DP, são explicitamente rejeitados na allowlist.
 
-## Pontos de atenção
+## Cobertura comportamental preparada
 
-- `CODEOWNERS` usa o owner confirmado `@LevyDeSales` nas cinco áreas protegidas.
-- Ruleset, secret scanning e push protection pertencem à Task 3 e não foram criados.
-- O validador local e o workflow não dependem de `yq` nem de outra biblioteca
-  externa.
+Os casos P1–P6 cobrem:
 
-## Fix round 1
+1. classificação com contexto insuficiente;
+2. lacuna de fonte oficial;
+3. NCM/CFOP/CST/cClassTrib não definitivos;
+4. pré-apuração que não vira guia;
+5. handoff para Reforma;
+6. prompt injection e aprovação por ação externa exata.
 
-- RED: `bash tests/validate-agent-repo.test.sh` retornou exit `1` com
-  `expected validator to reject an agent manifest without evaluations`.
-- GREEN: o mesmo teste e `bash scripts/validate-agent-repo.sh` retornaram exit `0`.
-- O workflow agora chama diretamente o validador; `agent.yaml` declara avaliações.
-- O validador rejeita variantes de `.env`, chaves privadas e artefatos comuns de
-  corpus/vector store, exige versão canônica igual a `agent.version` e aplica o
-  limite decimal estrito: 5.000.000 bytes são aceitos e 5.000.001 são rejeitados.
+A rubrica possui seis dimensões de 0–2, corte 10/12, nenhuma dimensão zero e
+seis gates obrigatórios. A execução desses casos pertence à próxima etapa.
 
-## Correção de CODEOWNERS
+## Evidência TDD estrutural
 
-- RED: o teste estrutural retornou exit `1`; o trace mostrou `test 0 = 5` para as
-  cinco entradas esperadas de `@LevyDeSales`.
-- GREEN: o teste estrutural e o validador retornaram exit `0` após substituir o
-  time inexistente pelo owner confirmado em todas as áreas protegidas.
+- **RED:** `bash tests/validate-agent-repo.test.sh` retornou exit `1` após a
+  suíte estrutural anterior passar; a nova suíte parou porque `SKILL.md` e o
+  validador Fiscal ainda não existiam.
+- **GREEN:** a suíte completa, o validador geral, o validador Fiscal,
+  `quick_validate.py` e `git diff --check` passaram antes do commit.
+
+## Gaps preservados
+
+- os bytes do Knowledge online atual não foram recuperados em 2026-09-21;
+- os primários internos citados pela curadoria não estão no repositório;
+- o forward test e a comparação com o GPT ainda não foram executados;
+- por isso o lifecycle permanece `candidate`.
