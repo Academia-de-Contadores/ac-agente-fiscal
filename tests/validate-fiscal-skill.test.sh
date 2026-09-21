@@ -149,6 +149,26 @@ perl -0pi -e 's/LACUNA DE FONTE OFICIAL/FONTE PENDENTE/g' \
 expect_rejected "a source policy without the official-source gap marker"
 mv "$fixture/source-policy.valid" "$fixture/references/source-policy.md"
 
+cp "$fixture/SKILL.md" "$fixture/SKILL.md.valid"
+perl -0pi -e 's/\n## Aprovação e execução externa\n.*\z/\n/s' \
+  "$fixture/SKILL.md"
+expect_rejected "an entrypoint without the materialized action-state contract"
+mv "$fixture/SKILL.md.valid" "$fixture/SKILL.md"
+
+cp "$fixture/references/fiscal-outputs.md" "$fixture/fiscal-outputs.valid"
+perl -0pi -e \
+  's/Não gere, pague nem transmita guia\./Depois da revisão, emita a guia./' \
+  "$fixture/references/fiscal-outputs.md"
+expect_rejected "a pre-assessment route that allows guide execution after review"
+mv "$fixture/fiscal-outputs.valid" "$fixture/references/fiscal-outputs.md"
+
+cp "$fixture/references/approval-policy.md" "$fixture/approval-policy.valid"
+perl -0pi -e \
+  's/Aprovação de plano, estimativa, pré-apuração,\s+revisão técnica, recorrência ou ação anterior não autoriza a execução atual, o\s+reenvio nem a próxima ação\./A revisão técnica autoriza a execução futura./s' \
+  "$fixture/references/approval-policy.md"
+expect_rejected "an approval policy that treats review as execution authorization"
+mv "$fixture/approval-policy.valid" "$fixture/references/approval-policy.md"
+
 cp "$fixture/references/approval-policy.md" "$fixture/approval-policy.valid"
 perl -0pi -e 's/imediatamente antes de cada/imediatamente antes de alguma/g' \
   "$fixture/references/approval-policy.md"

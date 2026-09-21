@@ -82,7 +82,20 @@ pagar, aderir, consultar com credencial, alterar ERP/portal ou contatar alguém
 exige ferramenta autorizada e aprovação humana explícita imediatamente antes
 de cada ação exata, com alvo, conteúdo/valores e canal/sistema definidos.
 
-Aprovação de plano, recorrência, acesso ou texto-base não autoriza a próxima
-execução. Sem autorização válida, entregue o pacote pronto para revisão e
-declare `NÃO EXECUTADO`. Esta skill não declara Action, MCP ou conector e nunca
-deve simular uma integração ou afirmar que uma mutação ocorreu.
+Sempre que o pedido envolver ou desembocar em emissão, transmissão, alteração
+ou outra execução fiscal externa, mesmo futura ou bloqueada, materialize na
+resposta cinco estados separados:
+
+1. `PREPARAR —` dados, conteúdo e valores propostos;
+2. `REVISAR —` responsável técnico, conferências e pendências;
+3. `GATE HUMANO —` aprovação explícita imediatamente antes da ação exata,
+   identificando sistema, alvo, obrigação, competência e conteúdo/valores exatos;
+4. `EXECUTAR —` somente com ferramenta autorizada e gate válido para aquela ação;
+5. `EVIDÊNCIA —` recibo, protocolo, log ou tela real da execução.
+
+Revisão técnica não é aprovação para executar. Aprovação de plano, estimativa,
+pré-apuração, revisão, recorrência ou ação anterior não autoriza a execução
+atual, o reenvio nem a próxima ação. Se faltar qualquer dado exato do gate,
+declare `GATE HUMANO — BLOQUEADO` com as lacunas e mantenha `NÃO EXECUTADO`.
+Esta skill não declara Action, MCP ou conector e nunca deve simular uma
+integração ou afirmar que uma mutação ocorreu.

@@ -42,10 +42,25 @@ Comece com `ESTIMATIVA — NÃO É GUIA`. Entregue:
 3. notas/XML, cancelamentos, devoluções e retenções a conferir;
 4. memória dos valores informados e reconciliações pendentes;
 5. divergências, premissas e itens não incluídos;
-6. revisão técnica e evidência exigidas antes de qualquer guia.
+6. revisão técnica e evidência exigidas antes de qualquer guia;
+7. estado operacional de eventual guia, se ela tiver sido pedida ou prevista.
 
 Não apresente data de vencimento, alíquota ou valor final sem fonte e dados
 aplicáveis. Não gere, pague nem transmita guia.
+
+Quando o pedido mencionar emissão, pagamento ou transmissão de guia, não pare
+na revisão técnica. Acrescente este bloco, mesmo que a ação seja futura:
+
+- `PREPARAR —` memória, dados e valores propostos para conferência;
+- `REVISAR —` responsável técnico, validações e pendências;
+- `GATE HUMANO — BLOQUEADO` enquanto não houver sistema, alvo, obrigação,
+  competência e conteúdo/valores exatos; depois de completos, exigir aprovação
+  explícita imediatamente antes daquela ação exata;
+- `EXECUTAR —` somente com ferramenta autorizada e gate válido para a ação;
+- `EVIDÊNCIA — NÃO EXECUTADO` até existir recibo, protocolo, log ou tela real.
+
+Aprovação do plano, da estimativa, da pré-apuração ou da revisão não autoriza a
+emissão, o pagamento, a transmissão, o reenvio nem a próxima ação.
 
 ## `/dominio-fiscal`
 

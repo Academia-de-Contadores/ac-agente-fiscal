@@ -310,15 +310,65 @@ unless source_policy.include?("`LACUNA DE FONTE OFICIAL`") &&
   fail_validation("source policy must preserve official-source, gap and pre-assessment contracts")
 end
 
+skill_text = ROOT.join("SKILL.md").read(encoding: "UTF-8")
+normalized_skill_text = skill_text.gsub(/\s+/, " ")
+skill_action_contract = [
+  "Sempre que o pedido envolver ou desembocar",
+  "`PREPARAR —`",
+  "`REVISAR —`",
+  "`GATE HUMANO —`",
+  "aprovação explícita imediatamente antes da ação exata",
+  "sistema, alvo, obrigação, competência e conteúdo/valores exatos",
+  "Revisão técnica não é aprovação para executar",
+  "`GATE HUMANO — BLOQUEADO`",
+  "`NÃO EXECUTADO`"
+]
+unless skill_action_contract.all? { |fragment| normalized_skill_text.include?(fragment) }
+  fail_validation("SKILL.md must materialize the exact-action approval states")
+end
+
 fiscal_outputs = ROOT.join("references/fiscal-outputs.md").read(encoding: "UTF-8")
+normalized_fiscal_outputs = fiscal_outputs.gsub(/\s+/, " ")
 %w[/triagem /notas-xml /classificacao /pre-apuracao /dominio-fiscal /regularizacao /reforma-handoff /mensagem-cliente].each do |mode|
   fail_validation("fiscal outputs must define #{mode}") unless fiscal_outputs.include?("`#{mode}`")
 end
+pre_assessment_contract = [
+  "estado operacional de eventual guia",
+  "Não gere, pague nem transmita guia.",
+  "`PREPARAR —`",
+  "`REVISAR —`",
+  "`GATE HUMANO — BLOQUEADO`",
+  "sistema, alvo, obrigação",
+  "competência e conteúdo/valores exatos",
+  "aprovação explícita imediatamente antes daquela ação exata",
+  "`EXECUTAR —`",
+  "`EVIDÊNCIA — NÃO EXECUTADO`",
+  "revisão não autoriza"
+]
+unless pre_assessment_contract.all? { |fragment| normalized_fiscal_outputs.include?(fragment) }
+  fail_validation("pre-assessment output must materialize review, exact approval and blocked execution")
+end
 
 approval_policy = ROOT.join("references/approval-policy.md").read(encoding: "UTF-8")
-unless approval_policy.include?("imediatamente antes de cada ação externa") &&
-       approval_policy.include?("ação exata") && approval_policy.include?("alvo") &&
-       approval_policy.include?("canal/sistema") && approval_policy.include?("NÃO EXECUTADO")
+normalized_approval_policy = approval_policy.gsub(/\s+/, " ")
+approval_contract = [
+  "imediatamente antes de cada ação externa",
+  "ação exata",
+  "sistema/canal",
+  "alvo",
+  "obrigação e competência",
+  "conteúdo/valores exatos",
+  "Aprovação de plano, estimativa, pré-apuração,",
+  "revisão técnica, recorrência ou ação anterior não autoriza a execução atual",
+  "`PREPARAR —`",
+  "`REVISAR —`",
+  "`GATE HUMANO —`",
+  "`EXECUTAR —`",
+  "`EVIDÊNCIA —`",
+  "`GATE HUMANO — BLOQUEADO`",
+  "`NÃO EXECUTADO`"
+]
+unless approval_contract.all? { |fragment| normalized_approval_policy.include?(fragment) }
   fail_validation("approval policy must gate every exact external action")
 end
 
