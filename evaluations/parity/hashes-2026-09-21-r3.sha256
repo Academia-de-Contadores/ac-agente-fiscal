@@ -8,7 +8,6 @@
 # package_install_byte_equality: 23/23
 # This manifest intentionally excludes itself to avoid self-reference.
 # agent.yaml below is the post-execution index; it was not in the historical inventory proof.
-
 3e359998090283beb39970c7c93bd9d17a5f027e1dccf12c41a2e7c8329cdc91  evaluations/parity/local-outputs-2026-09-21-r3/P1.md
 d8bd24607ea155e5a6d8eee364f9273ba49cf71e989db772c7243921defa8a04  evaluations/parity/local-outputs-2026-09-21-r3/P2.md
 7318a83a645ba869afd49f7539757b7a61d534ba24a902fcd43b0312eb67bbb7  evaluations/parity/local-outputs-2026-09-21-r3/P3.md
