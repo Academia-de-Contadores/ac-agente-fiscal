@@ -17,7 +17,7 @@ Todas as mudanças relevantes deste agente serão registradas aqui.
   comprovada e define um baseline documental provisório e reversível.
 - Registra a ambiguidade entre `Thinking 5.6` no seletor e `GPT-5.6 Sol` na
   prévia sem inferir um identificador interno de modelo.
-- Registra PASS local 6/6, com 65/72 pontos, instalação seletiva
+- Registra PASS local r4 6/6, com 70/72 pontos e 36/36 gates, instalação seletiva
   23 arquivos/10 Knowledge/0 symlinks/0 `.gitkeep` e igualdade 23/23.
 - Mantém explícito que somente 2/6 respostas da baseline online congelada
   qualificam sob a rubrica de release; a baseline define identidade, enquanto a

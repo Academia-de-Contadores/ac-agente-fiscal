@@ -49,8 +49,9 @@ marcar riscos e preparar a revisão. Ela não deve afirmar que corrigiu o Domín
 ## Validação da release
 
 O pacote contém uma allowlist de 23 arquivos, incluindo os dez documentos
-Fiscal. Os seis casos locais P1–P6 qualificam: 11, 10, 10, 12, 11 e 11 pontos,
-respectivamente, totalizando 65/72. A instalação seletiva preserva 23 arquivos
+Fiscal. Os seis casos locais P1–P6 qualificam: 12, 11, 12, 12, 11 e 12 pontos,
+respectivamente, totalizando 70/72 e 36/36 gates PASS. A instalação seletiva
+preserva 23 arquivos
 regulares, dez arquivos de Knowledge, nenhum symlink e nenhum `.gitkeep`.
 
 A baseline online congelada qualificou 2/6 casos sob a mesma rubrica de release.
