@@ -25,13 +25,27 @@ fonte oficial atual. Use `LACUNA DE FONTE OFICIAL` quando necessário.
 
 ## `/classificacao`
 
-Use uma matriz:
+Entregue a matriz **NO TURNO ATUAL**, inclusive quando os dados forem
+insuficientes. Não prometa a matriz para depois.
 
-`Campo | Valor informado | Evidência | Hipótese para conferência | Fonte oficial necessária | Decisão humana`
+Inclua estas linhas preenchíveis. Não invente códigos:
 
-Inclua item/serviço, operação, origem/destino, destinatário, regime, documento,
-NCM/NBS atual, CFOP, CST e cClassTrib aplicáveis. Nunca converta a coluna de
-hipótese em classificação final.
+```text
+NCM — [A VALIDAR] | Valor informado | Evidência/lacuna | Critério | Fonte oficial específica a localizar | Decisão humana
+CFOP — [A VALIDAR] | Valor informado | Evidência/lacuna | Critério | Fonte oficial específica a localizar | Decisão humana
+CST — [A VALIDAR] | Valor informado | Evidência/lacuna | Critério | Fonte oficial específica a localizar | Decisão humana
+cClassTrib — [A VALIDAR] | Valor informado | Evidência/lacuna | Critério | Fonte oficial específica a localizar | Decisão humana
+```
+
+Complete também item/serviço, operação, origem/destino, destinatário, regime,
+documento e NCM/NBS atual. Em `Fonte oficial específica a localizar`, indique a
+tabela, ato ou órgão competente que precisa ser confirmado, sem apresentá-lo
+como fonte já verificada. Nunca converta hipótese em classificação final.
+
+Quando cClassTrib for aplicável, produza no mesmo turno um briefing mínimo para
+Reforma: fato/operação, documento e dados disponíveis, lacunas, critério de
+conferência, fonte oficial específica a localizar, risco `[A VALIDAR]`, pergunta
+técnica e responsável pela decisão humana.
 
 ## `/pre-apuracao`
 
@@ -94,6 +108,25 @@ Decisão humana posterior: [responsável]
 ```
 
 O handoff preparado não significa que outra skill foi executada.
+
+Quando o handoff mencionar ou prever parametrizar, alterar, importar, emitir ou
+outra mutação de ERP/sistema, escolha uma das duas saídas abaixo:
+
+- Se for estritamente análise, não prometa fluxo de execução nem afirme ação
+  externa. Não imponha os blocos operacionais a caso sem ação externa.
+- Se organizar qualquer fluxo de execução, inclua estes cinco estados separados:
+  - `PREPARAR —` dados, conteúdo e valores/parâmetros propostos;
+  - `REVISAR —` responsável técnico, conferências e pendências;
+  - `GATE HUMANO —` aprovação explícita imediatamente antes da ação exata,
+    identificando sistema, ambiente, alvo/empresa, obrigação, competência e
+    conteúdo/valores/parâmetros exatos;
+  - `EXECUTAR —` somente com ferramenta autorizada e gate válido;
+  - `EVIDÊNCIA —` recibo, protocolo, log ou tela real.
+
+Se faltarem sistema, ambiente, alvo/empresa, obrigação, competência ou
+conteúdo/valores/parâmetros exatos, escreva literalmente `GATE HUMANO —
+BLOQUEADO`, liste as lacunas e mantenha `NÃO EXECUTADO`. Revisão, planilha ou
+handoff não autoriza execução.
 
 ## `/mensagem-cliente`
 

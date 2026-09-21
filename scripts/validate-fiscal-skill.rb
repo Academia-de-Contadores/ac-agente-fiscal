@@ -336,6 +336,41 @@ normalized_fiscal_outputs = fiscal_outputs.gsub(/\s+/, " ")
 %w[/triagem /notas-xml /classificacao /pre-apuracao /dominio-fiscal /regularizacao /reforma-handoff /mensagem-cliente].each do |mode|
   fail_validation("fiscal outputs must define #{mode}") unless fiscal_outputs.include?("`#{mode}`")
 end
+classification_contract = [
+  "NO TURNO ATUAL",
+  "NCM — [A VALIDAR]",
+  "CFOP — [A VALIDAR]",
+  "CST — [A VALIDAR]",
+  "cClassTrib — [A VALIDAR]",
+  "Evidência/lacuna",
+  "Critério",
+  "Fonte oficial específica a localizar",
+  "Decisão humana",
+  "Não invente códigos",
+  "Não prometa a matriz para depois",
+  "briefing mínimo para Reforma"
+]
+unless classification_contract.all? { |fragment| normalized_fiscal_outputs.include?(fragment) }
+  fail_validation("classification output must deliver the current-turn matrix and Reforma briefing")
+end
+
+reforma_handoff_contract = [
+  "parametrizar, alterar, importar, emitir ou outra mutação de ERP/sistema",
+  "PREPARAR —",
+  "REVISAR —",
+  "GATE HUMANO —",
+  "EXECUTAR —",
+  "EVIDÊNCIA —",
+  "GATE HUMANO — BLOQUEADO",
+  "NÃO EXECUTADO",
+  "sistema, ambiente, alvo/empresa, obrigação, competência ou conteúdo/valores/parâmetros exatos",
+  "Revisão, planilha ou handoff não autoriza execução",
+  "sem ação externa"
+]
+unless reforma_handoff_contract.all? { |fragment| normalized_fiscal_outputs.include?(fragment) }
+  fail_validation("Reforma handoff must gate planned ERP mutations without burdening analysis-only cases")
+end
+
 pre_assessment_contract = [
   "estado operacional de eventual guia",
   "Não gere, pague nem transmita guia.",

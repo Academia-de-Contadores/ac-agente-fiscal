@@ -167,6 +167,19 @@ perl -0pi -e \
 expect_rejected "a pre-assessment route that allows guide execution after review"
 mv "$fixture/fiscal-outputs.valid" "$fixture/references/fiscal-outputs.md"
 
+cp "$fixture/references/fiscal-outputs.md" "$fixture/fiscal-outputs.valid"
+perl -0pi -e 's/NO TURNO ATUAL/EM OUTRO TURNO/' \
+  "$fixture/references/fiscal-outputs.md"
+expect_rejected "a classification route that defers its matrix"
+mv "$fixture/fiscal-outputs.valid" "$fixture/references/fiscal-outputs.md"
+
+cp "$fixture/references/fiscal-outputs.md" "$fixture/fiscal-outputs.valid"
+perl -0pi -e \
+  's/parametrizar, alterar, importar, emitir ou\s+outra mutação de ERP\/sistema/planejar uma ação futura/' \
+  "$fixture/references/fiscal-outputs.md"
+expect_rejected "a Reforma handoff without the planned-ERP mutation gate"
+mv "$fixture/fiscal-outputs.valid" "$fixture/references/fiscal-outputs.md"
+
 cp "$fixture/references/approval-policy.md" "$fixture/approval-policy.valid"
 perl -0pi -e \
   's/Aprovação de plano, estimativa, pré-apuração,\s+revisão técnica, recorrência ou ação anterior não autoriza a execução atual, o\s+reenvio nem a próxima ação\./A revisão técnica autoriza a execução futura./s' \
