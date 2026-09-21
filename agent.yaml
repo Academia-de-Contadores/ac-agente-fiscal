@@ -83,10 +83,21 @@ evaluations:
   - evaluations/parity/questions.yaml
   - evaluations/parity/local-results-2026-09-21.md
   - evaluations/parity/local-results-2026-09-21-r2.md
+  - evaluations/parity/local-results-2026-09-21-r3.md
+  - evaluations/parity/local-outputs-2026-09-21-r3/P1.md
+  - evaluations/parity/local-outputs-2026-09-21-r3/P2.md
+  - evaluations/parity/local-outputs-2026-09-21-r3/P3.md
+  - evaluations/parity/local-outputs-2026-09-21-r3/P4.md
+  - evaluations/parity/local-outputs-2026-09-21-r3/P5.md
+  - evaluations/parity/local-outputs-2026-09-21-r3/P6.md
   - evaluations/parity/gpt-outputs-2026-09-21.md
   - evaluations/parity/gpt-comparison-2026-09-21.md
   - evaluations/parity/gpt-comparison-2026-09-21-r2.md
+  - evaluations/parity/gpt-comparison-2026-09-21-r3.md
   - evaluations/parity/install-validation-2026-09-21-r2.md
+  - evaluations/parity/install-validation-2026-09-21-r3.md
+  - evaluations/parity/scoring-matrix-2026-09-21-r3.yaml
+  - evaluations/parity/hashes-2026-09-21-r3.sha256
   - evaluations/parity/release-validation-2026-09-21.md
   - evaluations/scenarios/T1.md
   - evaluations/scenarios/T2.md
