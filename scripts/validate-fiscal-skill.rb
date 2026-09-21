@@ -191,6 +191,17 @@ unless agent.dig("agent", "id") == "ac.fiscal" &&
 end
 fail_validation("agent.yaml connectors must remain empty") unless agent["connectors"] == []
 
+if ROOT.join("reports/task-2-report.md").exist?
+  fail_validation("legacy reports/task-2-report.md must remain removed")
+end
+readme = ROOT.join("README.md").read(encoding: "UTF-8")
+unless readme.include?("foi projetada para ser mais operacional")
+  fail_validation("candidate README must describe intended utility prospectively")
+end
+if readme.include?("é mais operacional que o GPT")
+  fail_validation("candidate README must not claim unvalidated behavioral superiority")
+end
+
 runtime = agent["skill_runtime"]
 fail_validation("agent.yaml skill_runtime must be a mapping") unless runtime.is_a?(Hash)
 RUNTIME_POINTERS.each do |key, expected|

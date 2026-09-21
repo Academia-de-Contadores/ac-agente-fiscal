@@ -33,6 +33,19 @@ for relative_path in "${required[@]}" "${runtime_knowledge[@]}"; do
   test -f "$root/$relative_path"
 done
 
+if test -e "$root/reports/task-2-report.md"; then
+  echo "legacy reports/task-2-report.md must not be tracked" >&2
+  exit 1
+fi
+if ! grep -Fq "foi projetada para ser mais operacional" "$root/README.md"; then
+  echo "candidate README must describe intended utility prospectively" >&2
+  exit 1
+fi
+if grep -Fq "é mais operacional que o GPT" "$root/README.md"; then
+  echo "candidate README must not claim unvalidated behavioral superiority" >&2
+  exit 1
+fi
+
 ruby "$validator"
 
 fixture="$(mktemp -d)"
@@ -47,6 +60,16 @@ expect_rejected() {
     return 1
   fi
 }
+
+mkdir -p "$fixture/reports"
+printf '%s\n' '# Legacy task report' > "$fixture/reports/task-2-report.md"
+expect_rejected "the legacy Task 2 report returning"
+rm "$fixture/reports/task-2-report.md"
+
+cp "$fixture/README.md" "$fixture/README.md.valid"
+perl -0pi -e 's/foi projetada para ser/é/' "$fixture/README.md"
+expect_rejected "a candidate claiming unvalidated behavioral superiority"
+mv "$fixture/README.md.valid" "$fixture/README.md"
 
 cp "$fixture/SKILL.md" "$fixture/SKILL.md.valid"
 rm "$fixture/SKILL.md"

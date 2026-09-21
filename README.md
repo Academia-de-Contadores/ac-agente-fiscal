@@ -15,10 +15,10 @@ de conferência, briefings e handoffs. Ela cobre notas e XML, NF-e/NFC-e/NFS-e,
 SEFAZ, prefeitura, Portal Nacional, CFOP/NCM/CST/cClassTrib, regimes, CND,
 parcelamento, pré-apuração, Domínio Fiscal e encaminhamento para Reforma.
 
-Ela é mais operacional que o GPT preservado, mas mantém os mesmos limites: não
-inventa regra ou fonte vigente, não fecha classificação, cálculo ou guia, não
-escolhe regime, não usa segredo e não executa ação externa sem aprovação humana
-imediatamente antes da ação exata.
+A candidata foi projetada para ser mais operacional que o GPT preservado, mas
+mantém os mesmos limites: não inventa regra ou fonte vigente, não fecha
+classificação, cálculo ou guia, não escolhe regime, não usa segredo e não
+executa ação externa sem aprovação humana imediatamente antes da ação exata.
 
 Os GPTs duplicados ou temporários da família Fiscal não recebem outra skill.
 Todos reutilizam este repositório e `$ac-fiscal`; o link acima identifica o GPT
