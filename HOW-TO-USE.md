@@ -1,116 +1,93 @@
-# Como usar este repositório canônico
-
-## Visão geral
-
-Este repositório canônico separa o núcleo do agente — objetivos, identidade e
-instruções — de suas capacidades, Knowledge, integrações e traduções para
-plataformas. O Git é a fonte de verdade: a plataforma de execução recebe uma
-reconstrução do conteúdo versionado, nunca o contrário sem revisão.
+# Como usar a skill Fiscal
 
 ## Começo rápido
 
-1. Abra uma branch do repositório canônico que será alterado.
-2. Defina ID, nome, versão e referências em `agent.yaml`.
-3. Preencha missão, métricas e não-objetivos; depois identidade e comportamento.
-4. Adicione avaliações, rode a suíte e abra um pull request conforme
-   `governance/CONTRIBUTING.md`.
+Escreva `Use $ac-fiscal` e descreva o caso sem senha, token, certificado ou dado
+desnecessário de cliente. Informe, quando souber:
 
-## Criar um agente novo
+- o que precisa conferir;
+- competência, regime, UF e município;
+- tipo de documento fiscal;
+- sistema ou portal usado;
+- qual evidência higienizada já existe.
 
-Para iniciar um agente novo, crie um repositório a partir do template canônico e
-então siga este fluxo no novo repositório canônico. Substitua os exemplos em
-`objectives/`, `identity/` e `instructions/` antes de criar capabilities. O prompt
-principal fica em `instructions/system.md`; regras de segurança, limites e
-aprovações ficam em `instructions/guardrails.md`. Registre cada componente
-utilizado em `agent.yaml` e mantenha o primeiro escopo pequeno e avaliável.
+Exemplo:
 
-## Importar um agente existente
+```text
+Use $ac-fiscal com /pre-apuracao. Preciso de uma estimativa para o caixa de agosto. Tenho o relatório de vendas, mas faltam XML, cancelamentos, devoluções e retenções.
+```
 
-Converta o prompt atual para `instructions/system.md` e separe regras permanentes
-em `instructions/guardrails.md`. Inventarie anexos, procedimentos, Actions e
-configurações, eliminando segredos e dados operacionais. Importe conteúdo usado
-pelo modelo para `knowledge/`, procedimentos repetíveis para `skills/` e schemas
-de integrações para `connectors/`; só publique após uma avaliação de regressão.
+A skill deve responder `ESTIMATIVA — NÃO É GUIA`, montar a reconciliação e
+indicar a revisão técnica. Ela não gera o valor final nem a guia.
 
-## Alterar o comportamento
+## Escolher a saída
 
-Classifique a mudança como editorial, funcional ou crítica. Edite o componente
-canônico responsável: objetivo não é identidade, regra geral não é skill e
-integração não é adapter. Atualize avaliações antes de mudanças comportamentais,
-a versão e o changelog quando exigidos pela política, e peça revisão humana para
-mudanças críticas.
+- `/triagem`: classifica a demanda e mostra os dados que faltam;
+- `/notas-xml`: confere o caminho de NF-e, NFC-e, NFS-e e XML;
+- `/classificacao`: prepara matriz não definitiva de CFOP/NCM/CST/cClassTrib;
+- `/pre-apuracao`: organiza estimativa e evidências, sem virar guia;
+- `/dominio-fiscal`: estrutura importação, parâmetros e divergências;
+- `/regularizacao`: organiza CND, PGFN, dívida e parcelamento sem aderir;
+- `/reforma-handoff`: prepara o caso para `$ac-reforma-tributaria`;
+- `/mensagem-cliente`: cria rascunho que ainda precisa de aprovação para envio.
 
-## Adicionar Knowledge
+Os contratos completos estão em `references/fiscal-outputs.md`.
 
-`knowledge/` recebe conteúdo curado que o modelo poderá consultar: `.md`, `.txt`,
-`.pdf`, `.csv`, JSON de referência, imagens e planilhas. Para cada fonte, mantenha
-um manifesto versionado com fonte, data, licença e hash; o manifesto descreve o
-material sem incluir credenciais ou dados proibidos. Não coloque aqui manuais de
-manutenção, conversas, logs, dados de clientes, corpora brutos ou índices RAG.
-Avalie a resposta e a segurança quando o conteúdo puder alterar comportamento ou
-risco.
+## Entender fonte e lacuna
 
-## Adicionar uma skill
+Para regra atual, prazo, tabela, procedimento de órgão ou classificação, a skill
+usa fonte oficial competente quando a verificação ao vivo estiver disponível.
+Se isso não for possível, ela deve escrever `LACUNA DE FONTE OFICIAL`, dizer o
+que ficou sem confirmação e indicar o portal, órgão ou texto que uma pessoa deve
+validar. Blog, material comercial e o próprio Knowledge não substituem essa
+fonte.
 
-Crie `skills/<nome>/SKILL.md` com gatilho, entradas, passos, saída, limites,
-handoff humano e dependências. Inclua casos em `skills/<nome>/evaluations/` e
-registre a skill em `agent.yaml` quando ela fizer parte do agente. Uma skill é um
-procedimento acionável; uma regra aplicada sempre pertence a `instructions/`.
+## Entender aprovação
 
-## Adicionar um connector ou Action
+Criar checklist, matriz, briefing ou rascunho é preparação. Alterar o Domínio,
+consultar portal com credencial, emitir, transmitir, aderir, pagar ou enviar
+algo é ação externa. Cada ação exata exige aprovação humana imediatamente antes,
+com alvo, conteúdo ou valores e canal/sistema definidos. Até lá, o estado é
+`NÃO EXECUTADO`.
 
-Um conector descreve o acesso a um sistema externo, sem conter seu segredo. Para
-uma Action, versione o OpenAPI em `connectors/actions/<nome>/openapi.yaml`, junto
-com exemplos sintéticos, permissões, fallback e avaliações de indisponibilidade.
-Endpoints privados e credenciais existem somente no runtime por variáveis de
-ambiente; registre apenas seus nomes e o contrato público de uso.
+## Instalação seletiva da release
 
-## Criar profiles e adapters
+O checkout inteiro não é uma pasta de skill. A lista normativa está em
+`agent.yaml`, em `skill_runtime.package`. Uma instalação deve copiar arquivos
+reais, sem symlinks, preservando exatamente os 23 caminhos dessa allowlist:
 
-Profiles recortam a distribuição por público, risco ou canal; adapters traduzem o
-agente canônico para uma plataforma. Cada `profile.yaml` e `adapter.yaml` declara
-`canonical_agent_version` igual a `agent.version`. Documente limitações do destino
-e não replique nem redefina missão, identidade ou instruções canônicas.
+- `SKILL.md`, `agent.yaml` e `agents/openai.yaml`;
+- os três arquivos em `references/`;
+- os dois arquivos de identidade, três de objetivos e dois de instruções;
+- o índice Fiscal e os nove `.md` de `knowledge/live-2026-08-22/`.
 
-## Testar e validar
+Não copie `.git`, `.github`, avaliações, governança, relatórios, scripts, testes,
+documentação, `.gitkeep`, `knowledge/MANIFEST.md`, o manifesto da captura ao vivo
+nem os nove arquivos históricos `knowledge/original/01-*` a `99-*`. Nunca use
+`cp -R knowledge`, pois isso inclui a captura contaminada por DP.
 
-Execute sempre:
+A versão `0.2.0` está `validated`: a instalação foi conferida byte a byte e os
+seis casos locais qualificaram. O GPT canônico permanece a baseline imutável de
+identidade; a qualificação da baseline sob a rubrica mais rígida não é requisito
+para a skill superar sua utilidade ou segurança.
+
+## Manutenção
+
+Mudança de comportamento começa por avaliação. Preserve os dez hashes e a
+allowlist, mantenha caminhos relativos e execute:
 
 ```bash
 bash tests/validate-agent-repo.test.sh
+bash tests/validate-fiscal-skill.test.sh
 bash scripts/validate-agent-repo.sh
+ruby scripts/validate-fiscal-skill.rb
 git diff --check
 ```
 
-Acrescente avaliações de cenário, segurança, regressão ou conector conforme o
-risco. O primeiro comando prova os casos negativos do validador; o segundo valida
-o repositório que será publicado.
+O validador rejeita pacote incompleto, Knowledge alterado, arquivo de DP na
+allowlist, ponteiro incorreto, dependência inventada, caminho local, segredo,
+rubrica reduzida e regressão do lifecycle validado.
 
-## Publicar uma mudança
-
-Revise o diff, atualize `CHANGELOG.md` e `agent.yaml` se houver versão nova, e
-sincronize profiles/adapters. Crie uma branch, faça commits claros, abra PR com
-classe, riscos e evidências de avaliação, e obtenha a revisão humana exigida. Use
-squash merge; não publique diretamente em `main`.
-
-## Recriar em outra plataforma
-
-Parta de `agent.yaml`, copie o núcleo canônico e conecte skills, Knowledge e
-contratos suportados pelo destino. Traduza limitações em `adapters/<plataforma>/`,
-sem mudar o comportamento central. Injete credenciais no runtime, execute as
-avaliações e registre qualquer diferença material como adapter, decisão ou risco.
-
-## Segurança e arquivos que não entram no Git
-
-Nunca versione segredo, `.env`, chave privada, credencial, conversa, dado de
-cliente, log, exportação operacional, corpus ou índice RAG. O validador também
-bloqueia artefatos vetoriais e arquivos maiores que 5 MB. Em caso de exposição,
-pare a publicação, revogue e rotacione o segredo e siga
-`governance/DATA-AND-SECRETS.md`.
-
-## Onde encontrar ajuda
-
-Use `docs/REPOSITORY-STRUCTURE.md` para decidir o destino de um arquivo,
-`governance/CONTRIBUTING.md` para o processo, e as políticas em `governance/` para
-dados, mudanças, release e riscos. Quando o impacto não estiver claro, registre a
-lacuna no pull request e peça decisão ao owner antes de alterar o núcleo.
+Se o GPT mudar ou um novo download produzir outros bytes, preserve a nova
+captura separadamente, compare os dez anexos e repita a validação antes de mudar
+o pacote. O GPT online não deve ser alterado para forçar a comparação.

@@ -20,6 +20,13 @@ required=(
   identity/identity.md
   instructions/system.md
   instructions/guardrails.md
+  SKILL.md
+  agents/openai.yaml
+  references/source-policy.md
+  references/fiscal-outputs.md
+  references/approval-policy.md
+  evaluations/parity/questions.yaml
+  scripts/validate-fiscal-skill.rb
   governance/CONTRIBUTING.md
   governance/CHANGE-POLICY.md
   governance/RELEASE-POLICY.md
@@ -228,5 +235,7 @@ validate_versioned_components() {
 
 validate_versioned_components profiles profile.yaml
 validate_versioned_components adapters adapter.yaml
+
+ruby "$root/scripts/validate-fiscal-skill.rb"
 
 echo "agent repository validation passed"
