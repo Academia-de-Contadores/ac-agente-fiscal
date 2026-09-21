@@ -95,3 +95,14 @@ aliases da família e não recebem repositórios ou skills próprios.
   `/tmp/ac-fiscal-install-backup-release.7Zv6Dg/ac-fiscal`.
 - `quick_validate.py`, validadores do repositório e da skill, testes negativos e
   `git diff --check` integram o gate final da release.
+
+## Aditamento corretivo — escopo do handoff P5
+
+Após a revisão estrutural, o contrato de `/reforma-handoff` passou a ser
+validado dentro da própria seção Markdown, sem poder ser satisfeito por estados
+de `/pre-apuracao`. As regressões negativas removem, no bloco de handoff, o
+estado `PREPARAR —` e a exigência de aprovação explícita imediatamente antes da
+ação exata; ambas devem ser rejeitadas pelo validador. A redação das lacunas foi
+delimitada ao ramo com execução pedida ou prevista, preservando a saída de
+análise pura sem gate operacional. Esta evidência é estrutural; não afirma nova
+execução do forward test comportamental.

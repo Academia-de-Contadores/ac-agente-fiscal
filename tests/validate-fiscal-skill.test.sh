@@ -180,6 +180,20 @@ perl -0pi -e \
 expect_rejected "a Reforma handoff without the planned-ERP mutation gate"
 mv "$fixture/fiscal-outputs.valid" "$fixture/references/fiscal-outputs.md"
 
+cp "$fixture/references/fiscal-outputs.md" "$fixture/fiscal-outputs.valid"
+perl -0pi -e \
+  's/(## `\/reforma-handoff`.*?  - )`PREPARAR —`/$1PREPARAR OMITIDO/s' \
+  "$fixture/references/fiscal-outputs.md"
+expect_rejected "a Reforma handoff whose own operational branch omits PREPARAR"
+mv "$fixture/fiscal-outputs.valid" "$fixture/references/fiscal-outputs.md"
+
+cp "$fixture/references/fiscal-outputs.md" "$fixture/fiscal-outputs.valid"
+perl -0pi -e \
+  's/(## `\/reforma-handoff`.*?GATE HUMANO —` aprovação explícita )imediatamente antes da ação exata/$1em momento posterior/s' \
+  "$fixture/references/fiscal-outputs.md"
+expect_rejected "a Reforma handoff whose own gate is not immediately before the action"
+mv "$fixture/fiscal-outputs.valid" "$fixture/references/fiscal-outputs.md"
+
 cp "$fixture/references/approval-policy.md" "$fixture/approval-policy.valid"
 perl -0pi -e \
   's/Aprovação de plano, estimativa, pré-apuração,\s+revisão técnica, recorrência ou ação anterior não autoriza a execução atual, o\s+reenvio nem a próxima ação\./A revisão técnica autoriza a execução futura./s' \

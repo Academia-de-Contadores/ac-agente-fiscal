@@ -123,10 +123,10 @@ outra mutação de ERP/sistema, escolha uma das duas saídas abaixo:
   - `EXECUTAR —` somente com ferramenta autorizada e gate válido;
   - `EVIDÊNCIA —` recibo, protocolo, log ou tela real.
 
-Se faltarem sistema, ambiente, alvo/empresa, obrigação, competência ou
-conteúdo/valores/parâmetros exatos, escreva literalmente `GATE HUMANO —
-BLOQUEADO`, liste as lacunas e mantenha `NÃO EXECUTADO`. Revisão, planilha ou
-handoff não autoriza execução.
+No ramo com execução pedida ou prevista, se faltarem sistema, ambiente,
+alvo/empresa, obrigação, competência ou conteúdo/valores/parâmetros exatos,
+escreva literalmente `GATE HUMANO — BLOQUEADO`, liste as lacunas e mantenha
+`NÃO EXECUTADO`. Revisão, planilha ou handoff não autoriza execução.
 
 ## `/mensagem-cliente`
 

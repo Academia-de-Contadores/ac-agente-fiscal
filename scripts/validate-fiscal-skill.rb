@@ -169,6 +169,13 @@ rescue Psych::Exception => e
   fail_validation("invalid YAML in #{relative_path} frontmatter: #{e.message.lines.first.strip}")
 end
 
+def fiscal_output_section(text, mode)
+  match = text.match(/^## `#{Regexp.escape(mode)}`\r?\n(.*?)(?=^## |\z)/m)
+  fail_validation("fiscal outputs must define #{mode}") unless match
+
+  match[1]
+end
+
 skill_frontmatter = load_frontmatter("SKILL.md")
 unexpected_keys = skill_frontmatter.keys - %w[name description license allowed-tools metadata]
 unless unexpected_keys.empty?
@@ -336,6 +343,8 @@ normalized_fiscal_outputs = fiscal_outputs.gsub(/\s+/, " ")
 %w[/triagem /notas-xml /classificacao /pre-apuracao /dominio-fiscal /regularizacao /reforma-handoff /mensagem-cliente].each do |mode|
   fail_validation("fiscal outputs must define #{mode}") unless fiscal_outputs.include?("`#{mode}`")
 end
+normalized_classification_output = fiscal_output_section(fiscal_outputs, "/classificacao").gsub(/\s+/, " ")
+normalized_reforma_handoff_output = fiscal_output_section(fiscal_outputs, "/reforma-handoff").gsub(/\s+/, " ")
 classification_contract = [
   "NO TURNO ATUAL",
   "NCM — [A VALIDAR]",
@@ -350,7 +359,7 @@ classification_contract = [
   "Não prometa a matriz para depois",
   "briefing mínimo para Reforma"
 ]
-unless classification_contract.all? { |fragment| normalized_fiscal_outputs.include?(fragment) }
+unless classification_contract.all? { |fragment| normalized_classification_output.include?(fragment) }
   fail_validation("classification output must deliver the current-turn matrix and Reforma briefing")
 end
 
@@ -363,11 +372,13 @@ reforma_handoff_contract = [
   "EVIDÊNCIA —",
   "GATE HUMANO — BLOQUEADO",
   "NÃO EXECUTADO",
+  "aprovação explícita imediatamente antes da ação exata",
   "sistema, ambiente, alvo/empresa, obrigação, competência ou conteúdo/valores/parâmetros exatos",
   "Revisão, planilha ou handoff não autoriza execução",
+  "No ramo com execução pedida ou prevista",
   "sem ação externa"
 ]
-unless reforma_handoff_contract.all? { |fragment| normalized_fiscal_outputs.include?(fragment) }
+unless reforma_handoff_contract.all? { |fragment| normalized_reforma_handoff_output.include?(fragment) }
   fail_validation("Reforma handoff must gate planned ERP mutations without burdening analysis-only cases")
 end
 
