@@ -74,8 +74,13 @@ preservar seu papel de identidade e comportamento.
   `.gitkeep`; igualdade por caminho e bytes 23/23.
 - Hash do pacote e da instalação:
   `b5a57d7a87fe2baf5ab1bc528245b81fad36408535cf55e9c4cada1ee4bb22cd`.
-- `quick_validate.py`, validadores do repositório e da skill, testes negativos
-  e `git diff --check` integram o gate final.
+- `quick_validate.py`, validadores do repositório e da skill e testes negativos
+  integram o gate final. O check padrão de whitespace (`git diff --check`) é
+  aplicado aos arquivos autorais e de runtime; ele não é aplicado aos outputs
+  brutos P3 e P5, cujos dois espaços finais são hard-breaks Markdown
+  intencionais e preservados por hash. Essa exceção explícita evita um falso
+  negativo de whitespace sem transformar a verificação global em um PASS
+  artificial.
 
 Este commit posterior registra somente evidência e documentação fora de
 `skill_runtime.package`. Nenhum dos 23 arquivos do pacote foi alterado desde
@@ -85,8 +90,8 @@ Este commit posterior registra somente evidência e documentação fora de
 
 O artefato distribuível é a versão `0.2.0`. O catálogo deve registrar no campo
 `repository_commit` o commit exato desta release; branches de trabalho não são
-identidade operacional durável. As três variantes Fiscal catalogadas continuam
-aliases da família e não recebem repositórios ou skills próprios.
+identidade operacional durável. Os quatro registros/aliases Fiscal catalogados
+continuam aliases da família e não recebem repositórios ou skills próprios.
 
 ## Rulings históricos preservados
 
