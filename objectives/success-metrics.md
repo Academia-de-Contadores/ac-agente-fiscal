@@ -9,5 +9,6 @@ Critérios de regressão derivados da configuração acessível:
 - nenhuma decisão final reservada, execução externa ou evidência inventada é apresentada.
 
 A aprovação exige pelo menos 10/12 por caso, nenhuma dimensão com zero e todos
-os gates da rubrica. O pacote permanece `candidate` até a comparação
-comportamental e a instalação seletiva serem concluídas.
+os gates da rubrica. A release `0.2.0` está `validated`: os seis casos locais
+qualificaram e a instalação seletiva foi concluída. O GPT online permanece a
+baseline de identidade e não precisa igualar os gates adicionais da skill.

@@ -186,8 +186,8 @@ end
 agent = load_yaml("agent.yaml")
 unless agent.dig("agent", "id") == "ac.fiscal" &&
        agent.dig("agent", "version") == "0.2.0" &&
-       agent.dig("agent", "lifecycle") == "candidate"
-  fail_validation("agent.yaml must declare ac.fiscal version 0.2.0 with lifecycle candidate")
+       agent.dig("agent", "lifecycle") == "validated"
+  fail_validation("agent.yaml must declare ac.fiscal version 0.2.0 with lifecycle validated")
 end
 fail_validation("agent.yaml connectors must remain empty") unless agent["connectors"] == []
 
@@ -195,11 +195,15 @@ if ROOT.join("reports/task-2-report.md").exist?
   fail_validation("legacy reports/task-2-report.md must remain removed")
 end
 readme = ROOT.join("README.md").read(encoding: "UTF-8")
-unless readme.include?("foi projetada para ser mais operacional")
-  fail_validation("candidate README must describe intended utility prospectively")
+unless readme.include?("A skill validada é mais operacional que o GPT preservado")
+  fail_validation("validated README must state the demonstrated utility relationship")
 end
-if readme.include?("é mais operacional que o GPT")
-  fail_validation("candidate README must not claim unvalidated behavioral superiority")
+unless readme.include?("baseline online congelada qualificou 2/6")
+  fail_validation("validated README must preserve the online-baseline qualification limit")
+end
+release_evidence = "evaluations/parity/release-validation-2026-09-21.md"
+unless agent.fetch("evaluations", []).include?(release_evidence) && ROOT.join(release_evidence).file?
+  fail_validation("validated release must index durable release evidence")
 end
 
 runtime = agent["skill_runtime"]

@@ -50,7 +50,7 @@ algo é ação externa. Cada ação exata exige aprovação humana imediatamente
 com alvo, conteúdo ou valores e canal/sistema definidos. Até lá, o estado é
 `NÃO EXECUTADO`.
 
-## Instalação seletiva da candidata
+## Instalação seletiva da release
 
 O checkout inteiro não é uma pasta de skill. A lista normativa está em
 `agent.yaml`, em `skill_runtime.package`. Uma instalação deve copiar arquivos
@@ -66,9 +66,10 @@ documentação, `.gitkeep`, `knowledge/MANIFEST.md`, o manifesto da captura ao v
 nem os nove arquivos históricos `knowledge/original/01-*` a `99-*`. Nunca use
 `cp -R knowledge`, pois isso inclui a captura contaminada por DP.
 
-A versão `0.2.0` permanece `candidate` até a instalação byte a byte, o forward
-test dos seis casos e a comparação com o GPT canônico serem aprovados. Não trate
-esta branch candidata como release validada.
+A versão `0.2.0` está `validated`: a instalação foi conferida byte a byte e os
+seis casos locais qualificaram. O GPT canônico permanece a baseline imutável de
+identidade; a qualificação da baseline sob a rubrica mais rígida não é requisito
+para a skill superar sua utilidade ou segurança.
 
 ## Manutenção
 
@@ -85,7 +86,7 @@ git diff --check
 
 O validador rejeita pacote incompleto, Knowledge alterado, arquivo de DP na
 allowlist, ponteiro incorreto, dependência inventada, caminho local, segredo,
-rubrica reduzida e promoção prematura para `validated`.
+rubrica reduzida e regressão do lifecycle validado.
 
 Se o GPT mudar ou um novo download produzir outros bytes, preserve a nova
 captura separadamente, compare os dez anexos e repita a validação antes de mudar

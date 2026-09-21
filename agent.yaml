@@ -3,7 +3,7 @@ agent:
   id: ac.fiscal
   name: Agente Fiscal Oficial
   version: 0.2.0
-  lifecycle: candidate
+  lifecycle: validated
   owners:
     - Academia-de-Contadores
 catalog:
@@ -81,6 +81,13 @@ evaluations:
   - evaluations/source-capture.md
   - evaluations/live-editor-audit-2026-09-21.md
   - evaluations/parity/questions.yaml
+  - evaluations/parity/local-results-2026-09-21.md
+  - evaluations/parity/local-results-2026-09-21-r2.md
+  - evaluations/parity/gpt-outputs-2026-09-21.md
+  - evaluations/parity/gpt-comparison-2026-09-21.md
+  - evaluations/parity/gpt-comparison-2026-09-21-r2.md
+  - evaluations/parity/install-validation-2026-09-21-r2.md
+  - evaluations/parity/release-validation-2026-09-21.md
   - evaluations/scenarios/T1.md
   - evaluations/scenarios/T2.md
   - evaluations/scenarios/T3.md

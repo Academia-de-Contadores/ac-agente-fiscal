@@ -37,12 +37,12 @@ if test -e "$root/reports/task-2-report.md"; then
   echo "legacy reports/task-2-report.md must not be tracked" >&2
   exit 1
 fi
-if ! grep -Fq "foi projetada para ser mais operacional" "$root/README.md"; then
-  echo "candidate README must describe intended utility prospectively" >&2
+if ! grep -Fq "A skill validada é mais operacional que o GPT preservado" "$root/README.md"; then
+  echo "validated README must state the demonstrated utility relationship" >&2
   exit 1
 fi
-if grep -Fq "é mais operacional que o GPT" "$root/README.md"; then
-  echo "candidate README must not claim unvalidated behavioral superiority" >&2
+if ! grep -Fq "baseline online congelada qualificou 2/6" "$root/README.md"; then
+  echo "validated README must preserve the online-baseline qualification limit" >&2
   exit 1
 fi
 
@@ -67,8 +67,13 @@ expect_rejected "the legacy Task 2 report returning"
 rm "$fixture/reports/task-2-report.md"
 
 cp "$fixture/README.md" "$fixture/README.md.valid"
-perl -0pi -e 's/foi projetada para ser/é/' "$fixture/README.md"
-expect_rejected "a candidate claiming unvalidated behavioral superiority"
+perl -0pi -e 's/A skill validada é mais operacional que o GPT preservado/A skill replica o GPT preservado/' "$fixture/README.md"
+expect_rejected "a validated README without the demonstrated utility relationship"
+mv "$fixture/README.md.valid" "$fixture/README.md"
+
+cp "$fixture/README.md" "$fixture/README.md.valid"
+perl -0pi -e 's/baseline online congelada qualificou 2\/6/baseline online foi aprovada/' "$fixture/README.md"
+expect_rejected "a validated README hiding the online-baseline qualification limit"
 mv "$fixture/README.md.valid" "$fixture/README.md"
 
 cp "$fixture/SKILL.md" "$fixture/SKILL.md.valid"
@@ -188,9 +193,9 @@ expect_rejected "a rubric below the 10 of 12 gate"
 mv "$fixture/rubric.valid" "$fixture/evaluations/rubrics/behavior.md"
 
 cp "$fixture/agent.yaml" "$fixture/agent.yaml.valid"
-sed 's/^  lifecycle: candidate$/  lifecycle: validated/' \
+sed 's/^  lifecycle: validated$/  lifecycle: candidate/' \
   "$fixture/agent.yaml.valid" > "$fixture/agent.yaml"
-expect_rejected "premature validated lifecycle"
+expect_rejected "a lifecycle regression to candidate"
 mv "$fixture/agent.yaml.valid" "$fixture/agent.yaml"
 
 cp "$fixture/agents/openai.yaml" "$fixture/openai.yaml.valid"

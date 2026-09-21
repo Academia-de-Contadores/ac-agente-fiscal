@@ -2,9 +2,9 @@
 
 Todas as mudanças relevantes deste agente serão registradas aqui.
 
-## Unreleased
+## 0.2.0 — 2026-09-21
 
-- Empacota a candidata `$ac-fiscal` 0.2.0 com interface, políticas de fonte e
+- Publica a release validada `$ac-fiscal` 0.2.0 com interface, políticas de fonte e
   aprovação e modelos operacionais para as rotas fiscais.
 - Restringe o runtime ao índice Fiscal e aos nove arquivos da captura
   `live-2026-08-22`, excluindo da allowlist os nove originais contaminados por DP.
@@ -17,6 +17,11 @@ Todas as mudanças relevantes deste agente serão registradas aqui.
   comprovada e define um baseline documental provisório e reversível.
 - Registra a ambiguidade entre `Thinking 5.6` no seletor e `GPT-5.6 Sol` na
   prévia sem inferir um identificador interno de modelo.
+- Registra PASS local 6/6, com 65/72 pontos, instalação seletiva
+  23 arquivos/10 Knowledge/0 symlinks/0 `.gitkeep` e igualdade 23/23.
+- Mantém explícito que somente 2/6 respostas da baseline online congelada
+  qualificam sob a rubrica de release; a baseline define identidade, enquanto a
+  skill validada acrescenta utilidade e gates de segurança.
 - Adiciona manual operacional, referência completa da estrutura e guia de contribuição expandido.
 - Torna os documentos operacionais obrigatórios na validação.
 

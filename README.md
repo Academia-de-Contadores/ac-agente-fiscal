@@ -5,8 +5,8 @@
 | ID | `ac.fiscal` |
 | Skill | `$ac-fiscal` |
 | GPT representado | [`g-6a72595c828c8191aec02f7931d9c626`](https://chatgpt.com/gpts/editor/g-6a72595c828c8191aec02f7931d9c626) |
-| Versão candidata | `0.2.0` |
-| Lifecycle | `candidate` |
+| Versão | `0.2.0` |
+| Lifecycle | `validated` |
 
 ## O que esta skill faz
 
@@ -15,8 +15,8 @@ de conferência, briefings e handoffs. Ela cobre notas e XML, NF-e/NFC-e/NFS-e,
 SEFAZ, prefeitura, Portal Nacional, CFOP/NCM/CST/cClassTrib, regimes, CND,
 parcelamento, pré-apuração, Domínio Fiscal e encaminhamento para Reforma.
 
-A candidata foi projetada para ser mais operacional que o GPT preservado, mas
-mantém os mesmos limites: não inventa regra ou fonte vigente, não fecha
+A skill validada é mais operacional que o GPT preservado, mas mantém limites
+mais explícitos: não inventa regra ou fonte vigente, não fecha
 classificação, cálculo ou guia, não escolhe regime, não usa segredo e não
 executa ação externa sem aprovação humana imediatamente antes da ação exata.
 
@@ -46,12 +46,19 @@ Use $ac-fiscal. Importei XML no Domínio e o total não bateu. Ainda não sei se
 A resposta deve organizar o que já se sabe, listar os documentos faltantes,
 marcar riscos e preparar a revisão. Ela não deve afirmar que corrigiu o Domínio.
 
-## Estado atual
+## Validação da release
 
-O pacote candidato contém uma allowlist de 23 arquivos, incluindo os dez
-documentos Fiscal, e seis casos P1–P6 para comparação posterior com o GPT. Esta
-etapa prepara a skill para instalação e forward test; ainda não promove o
-lifecycle para `validated`.
+O pacote contém uma allowlist de 23 arquivos, incluindo os dez documentos
+Fiscal. Os seis casos locais P1–P6 qualificam: 11, 10, 10, 12, 11 e 11 pontos,
+respectivamente, totalizando 65/72. A instalação seletiva preserva 23 arquivos
+regulares, dez arquivos de Knowledge, nenhum symlink e nenhum `.gitkeep`.
+
+A baseline online congelada qualificou 2/6 casos sob a mesma rubrica de release.
+Isso não bloqueia a publicação: o GPT online é a fonte preservada de identidade
+e comportamento, não o teto de utilidade ou segurança da skill. As instruções
+online têm paridade byte a byte, os dez nomes de anexos coincidem e os bytes
+online atuais continuam como `GAP`. Veja o relatório durável em
+`evaluations/parity/release-validation-2026-09-21.md`.
 
 Para usar, instalar ou manter, consulte [HOW-TO-USE.md](HOW-TO-USE.md). Para a
 evidência da fonte, veja

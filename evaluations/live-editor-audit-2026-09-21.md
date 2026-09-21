@@ -101,7 +101,7 @@ O catálogo mantém quatro registros associados a `ac.fiscal`: o editor oficial
 auditado, uma versão temporária publicada, um rascunho temporário e um guia de
 rotinas superseded. Eles são variantes da mesma família, não quatro agentes
 canônicos. Conforme o catálogo, continuam sem repositório ou skill próprios;
-somente `ac.fiscal` deve receber a futura skill canônica.
+somente `ac.fiscal` recebe a skill canônica.
 
 ## Gaps remanescentes
 
@@ -115,15 +115,15 @@ somente `ac.fiscal` deve receber a futura skill canônica.
 
 ## Decisão de baseline reversível
 
-O GPT canônico continua sendo o baseline comportamental. Para a próxima etapa,
+O GPT canônico continua sendo o baseline comportamental. Para a release,
 os nove arquivos de `knowledge/live-2026-08-22/` mais
 `knowledge/original/00-INDICE-FISCAL.md` formam o baseline documental
 provisório porque são a última captura binária comprovada e específica do
-domínio Fiscal. `knowledge/original/` permanece histórico e não deve entrar
+domínio Fiscal. `knowledge/original/` permanece histórico e não entra
 silenciosamente no runtime por conter material de DP.
 
 Esta decisão é reversível: se um novo download produzir bytes diferentes, a
 nova geração deve ser preservada separadamente, comparada e só então promovida
-à futura skill. O custo de a decisão atual estar errada é usar material
+à skill. O custo de a decisão atual estar errada é usar material
 documental desatualizado; a correção exigirá nova captura, revalidação
 comportamental e nova versão da skill, sem alterar o GPT para forçar paridade.
